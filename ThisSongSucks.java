@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Stack;
-
+//import ErrorHandlingMain;
 /**
  * This is the main for ThisSongSucksApp
  * 
@@ -17,6 +17,7 @@ import java.util.Stack;
 
 public class ThisSongSucks {
 	
+	// Global variables
 	final static String HELP = "help";
 	final static String ABOUT = "about";
 	final static String PREFRENCES = "prefrences";
@@ -27,11 +28,17 @@ public class ThisSongSucks {
 	final static String RUN_REVIEW = "runreview";
 	final static String RUN_REVIEW_ABV = "rr";
 	
-	public static void main (String[] args) {
+	// Global helpers
+	//ErrorHandlingMain eHandler = new ErrorHandlingMain(); 
+	
+	public static void main (String[] args)
+	{
+		appSetup();
+		
 		try {
 			// Backwards load stack of parameters, then pop the first one
-			Stack<String> paramStack = new Stack<String>(); 			
-			for(int i = args.length; i != 0; i--)
+			Stack<String> paramStack = new Stack<String>();
+			for(int i = (args.length-1); i >= 0; i--)
 			{
 				paramStack.push(args[i]);
 			}
@@ -68,9 +75,18 @@ public class ThisSongSucks {
 			}
 		
 		} catch (Exception e) {
-		
+			//eHandler.error(e.getMessage(), -1);
 		}
 			
+	}
+	
+	/**
+	 * Helper class initiates and does setup
+	 * of any necessary variables 
+	 */
+	private void appSetup()
+	{
+		//this.eHandler = new ErrorHandlingMain();
 	}
 	
 	/**
