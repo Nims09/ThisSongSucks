@@ -10,6 +10,8 @@ import java.util.Stack;
  * 
  * call 'java ThisSongSucks.java --help' for help
  * 
+ * CSV Files are located at Users/<USER>/Music/_Serato_/History Export/
+ * 
  * @author NMots
  * 
  */
@@ -27,13 +29,9 @@ public class ThisSongSucks {
 	final static String TRACK_REMOVE_ABV = "tr";
 	final static String RUN_REVIEW = "runreview";
 	final static String RUN_REVIEW_ABV = "rr";
-	
-	// Global helpers
-	//ErrorHandlingMain eHandler = new ErrorHandlingMain(); 
-	
+		
 	public static void main (String[] args)
 	{
-		appSetup();
 		
 		try {
 			// Backwards load stack of parameters, then pop the first one
@@ -75,18 +73,9 @@ public class ThisSongSucks {
 			}
 		
 		} catch (Exception e) {
-			//eHandler.error(e.getMessage(), -1);
+
 		}
 			
-	}
-	
-	/**
-	 * Helper class initiates and does setup
-	 * of any necessary variables 
-	 */
-	private void appSetup()
-	{
-		//this.eHandler = new ErrorHandlingMain();
 	}
 	
 	/**
