@@ -12,15 +12,19 @@ dirList=(
     'Interfaces'
     'Utilities'
 )
+# Create String variables
+buildString='javac '
+jarString='jar '
 
-finalJarCall = ''
-# Build Current Directory
-javac *.java
+# Build Directories
+buildString="$buildString *.java"
 
-# Build all other Directories and create the final jar string
-for ((i = 0; i < 2; i++))
+for i in "${dirList[@]}"
 do
-    echo "${FILES[$i]}"
+    buildString="$buildString $i/*.java"
+    echo $buildString
 done
 
+# Run the build command
+$buildString
 
