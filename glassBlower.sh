@@ -15,6 +15,23 @@ OPTIONS:
 EOF
 }
 
+cleanClassFiles()
+{
+    if [[ verbose -eq 1 ]]; then
+        echo "Cleaning class files."
+    fi
+
+    # Remove class files from each directory
+    for i in "${dirList[@]}"
+    do
+        removeClassfiles "$i"
+
+        if [[ verbose -eq 1 ]]; then
+            echo "Removed class files in directory: $i. "
+        fi
+    done
+}
+
 removeClassfiles()
 {
     # Build the command
@@ -47,10 +64,8 @@ dirList=(
 # Create String variables
 buildString='javac '
 jarString='jar '
-
 # Check if we want to run verbose
 verbose=0
-
 # We want to clean extra class files
 dirty=0
 
@@ -78,7 +93,7 @@ for i in "${dirList[@]}"
 do
     buildString="$buildString $i*.java"
 
-if [[ verbose -eq 1 ]]; then
+    if [[ verbose -eq 1 ]]; then
         echo "Added directory: $i to build string. "
     fi
 done
@@ -110,19 +125,7 @@ $jarString
 
 # If we're cleaning, clean the class files
 if [[ dirty -eq 0 ]]; then
-    if [[ verbose -eq 1 ]]; then
-        echo "Cleaning class files."
-    fi
-
-    # Remove class files from each directory
-    for i in "${dirList[@]}"
-    do
-        removeClassfiles "$i"
-
-        if [[ verbose -eq 1 ]]; then
-            echo "Removed class files in directory: $i. "
-        fi
-    done
+    cleanClassFiles
 fi
 
 # Script complete
