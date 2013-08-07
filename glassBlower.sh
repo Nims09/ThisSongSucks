@@ -56,9 +56,6 @@ removeClassfiles()
 ##
 dirList=(
     ''
-    'DB/'
-    'Interfaces/'
-    'Utilities/'
 )
 
 # Create String variables
@@ -99,10 +96,10 @@ do
 done
 
 # Collect class files and Jar them
-jarString="$jarString cfe ThisSongSucks.jar ThisSongSucks ThisSongSucks.class "
+jarString="$jarString cfm ThisSongSucks.jar Manifest.txt "
 for i in "${dirList[@]}"
 do
-    jarString="$jarString $i"
+    jarString="$jarString $i*.class"
 
     if [[ verbose -eq 1 ]]; then
         echo "Added directory: $i to jar string. "
