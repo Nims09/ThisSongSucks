@@ -1,5 +1,5 @@
 
-public class ErrorHandlingMain implements ErrorHandling {
+public class ErrorHandlingMain {
 	
 	/**
 	 * Referrs the user to the help menu and exits

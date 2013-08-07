@@ -1,7 +1,0 @@
-SQLLITE--
-
--Download sqlite-jbdc <https://bitbucket.org/xerial/sqlite-jdbc/downloads>
--put your downloaded jar into the /usr/sbin
--open .bash_profile <vim ~/.bash_profile>
--append the location you added the jar to (just add ':/usr/sbin/sqlite-jdbc-3.7.2.jar') to the current path
--write the file
