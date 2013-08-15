@@ -4,11 +4,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class dbBuilder
+public class DatabaseBuilder
 {
 	// Add finals
-	public static final String DB_CONNECTION = "jdbc:sqlite:database.db";
-	public static final int CONNECTION_TIMEOUT_VALUE = 30;
+	protected static final String DB_CONNECTION = "jdbc:sqlite:database.db";
+	protected static final int CONNECTION_TIMEOUT_VALUE = 30;
+	
+	// Add globals
+	protected Connection connection;
+	
+	/**
+	 * Constructor 
+	 */
+	public DatabaseBuilder()
+	{
+
+	}
 	
 	/**
 	 * Creates the tables in the DB
@@ -17,7 +28,7 @@ public class dbBuilder
 	 * don't already exist
 	 */
 	public static void createTables() throws ClassNotFoundException
-	{
+	{	
 		// Load the sqlite-JDBC driver for the current class loader
 		Class.forName("org.sqlite.JDBC");
 		
@@ -26,7 +37,7 @@ public class dbBuilder
 		{
 			// Connect to the db
 			connection = DriverManager.getConnection(DB_CONNECTION);
-	   	 System.out.println("trace1");
+	   	System.out.println("trace1");
 
 	      Statement statement = connection.createStatement();
 	   	 System.out.println("trace2");

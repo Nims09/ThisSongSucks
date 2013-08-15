@@ -41,7 +41,7 @@ public class ThisSongSucks {
 				paramStack.push(args[i]);
 			}
 			String initialParameter = paramStack.pop();
-			
+			System.out.println(initialParameter);
 
 			if(initialParameter.equals(ABOUT))
 			{
@@ -53,14 +53,17 @@ public class ThisSongSucks {
 			}
 			else if(initialParameter.equals(TRACK_ADD) || initialParameter.equals(TRACK_ADD_ABV))
 			{
+				instantiateDatabase();
 				callTrackAdd();
 			}
 			else if(initialParameter.equals(TRACK_REMOVE) || initialParameter.equals(TRACK_REMOVE_ABV))
 			{
+				instantiateDatabase();
 				callTrackRemove();
 			}
 			else if(initialParameter.equals(RUN_REVIEW) || initialParameter.equals(RUN_REVIEW_ABV))
 			{
+				instantiateDatabase();
 				callRunReview();
 			}
 			else if(initialParameter.equals(HELP))
@@ -73,9 +76,34 @@ public class ThisSongSucks {
 			}
 		
 		} catch (Exception e) {
-
+			// For now just print the exception message 
+			System.out.println("An exception was caught in the main: " + e.getMessage());
 		}
 			
+	}
+	
+	/**
+	 * instantiateDatabase 
+	 * Any method call that will need to access 
+	 * the database, we want to make sure a database
+	 * exists and that the tables are present
+	 * 
+	 * @throws an exception if anything goes wrong in DB creation. 
+	 */
+	static void instantiateDatabase()
+	{
+		DatabaseBuilder dbBuilder = new DatabaseBuilder();
+		
+		// Check if our tables exist, throw an exception if we have any issue
+		try 
+		{
+			dbBuilder.createTables();
+		}
+		catch (Exception e)
+		{
+			// For now just print out error
+			System.out.println("Exception caught trying to instantiate the database: " + e.getMessage());
+		}
 	}
 	
 	/**
