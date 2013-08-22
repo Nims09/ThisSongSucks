@@ -8,7 +8,6 @@ public class DatabaseBuilder
 {
 	// Add finals
 	protected static final String DB_CONNECTION = "jdbc:sqlite:database.db";
-	protected static final int CONNECTION_TIMEOUT_VALUE = 30;
 	protected static final String SPECIFIC_TRACK_INSTANCE_TABLE_NAME = "specifictrackinstance";
 	protected static final String GROUPED_TRACK_INSTANCE_TABLE_NAME = "groupedtrackinstance";		
 	
@@ -37,27 +36,28 @@ public class DatabaseBuilder
 			// Connect to the db, create worker
 			connection = DriverManager.getConnection(DB_CONNECTION);
 	   	DBWorker worker = new DBWorker(connection);
-	   	
+
 	   	// Check to see if database already exsists 
-	   	worker.checkTableExists(SPECIFIC_TRACK_INSTANCE_TABLE_NAME);
+	   	if(!worker.checkTableExists(SPECIFIC_TRACK_INSTANCE_TABLE_NAME))
+	   	{
+	   		
+	   	}
 	   	
-
-	      Statement statement = connection.createStatement();
-	   	 System.out.println("trace2");
-	      statement.setQueryTimeout(CONNECTION_TIMEOUT_VALUE);  // set timeout to 30 sec.
-			
-	      statement.executeUpdate("drop table if exists person");
-	      statement.executeUpdate("create table person (id integer, name string)");
-	      statement.executeUpdate("insert into person values(1, 'leo')");
-	      statement.executeUpdate("insert into person values(2, 'yui')");
-
-	      ResultSet rs = statement.executeQuery("select * from person");
-	      while(rs.next())
-	      {
-	        // read the result set
-	        System.out.println("name = " + rs.getString("name"));
-	        System.out.println("id = " + rs.getInt("id"));
-	      }
+//	      Statement statement = connection.createStatement();
+//	      statement.setQueryTimeout(CONNECTION_TIMEOUT_VALUE);  // set timeout to 30 sec.
+//			
+//	      statement.executeUpdate("drop table if exists person");
+//	      statement.executeUpdate("create table person (id integer, name string)");
+//	      statement.executeUpdate("insert into person values(1, 'leo')");
+//	      statement.executeUpdate("insert into person values(2, 'yui')");
+//
+//	      ResultSet rs = statement.executeQuery("select * from person");
+//	      while(rs.next())
+//	      {
+//	        // read the result set
+//	        System.out.println("name = " + rs.getString("name"));
+//	        System.out.println("id = " + rs.getInt("id"));
+//	      }
 		}
 		catch(Exception e)
 		{
