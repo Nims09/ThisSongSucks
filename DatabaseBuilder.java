@@ -9,6 +9,8 @@ public class DatabaseBuilder
 	// Add finals
 	protected static final String DB_CONNECTION = "jdbc:sqlite:database.db";
 	protected static final int CONNECTION_TIMEOUT_VALUE = 30;
+	protected static final String SPECIFIC_TRACK_INSTANCE_TABLE_NAME = "specifictrackinstance";
+	protected static final String GROUPED_TRACK_INSTANCE_TABLE_NAME = "groupedtrackinstance";		
 	
 	// Add globals
 	protected Connection connection;
@@ -16,10 +18,7 @@ public class DatabaseBuilder
 	/**
 	 * Constructor 
 	 */
-	public DatabaseBuilder()
-	{
-
-	}
+	public DatabaseBuilder(){}
 	
 	/**
 	 * Creates the tables in the DB
@@ -35,9 +34,13 @@ public class DatabaseBuilder
 		Connection connection = null;
 		try
 		{
-			// Connect to the db
+			// Connect to the db, create worker
 			connection = DriverManager.getConnection(DB_CONNECTION);
-	   	System.out.println("trace1");
+	   	DBWorker worker = new DBWorker(connection);
+	   	
+	   	// Check to see if database already exsists 
+	   	worker.checkTableExists(SPECIFIC_TRACK_INSTANCE_TABLE_NAME);
+	   	
 
 	      Statement statement = connection.createStatement();
 	   	 System.out.println("trace2");
