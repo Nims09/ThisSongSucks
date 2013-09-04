@@ -7,9 +7,7 @@ import java.sql.Statement;
 public class DatabaseBuilder
 {
 	// Add finals
-	protected static final String DB_CONNECTION = "jdbc:sqlite:database.db";
-	protected static final String SPECIFIC_TRACK_INSTANCE_TABLE_NAME = "specifictrackinstance";
-	protected static final String GROUPED_TRACK_INSTANCE_TABLE_NAME = "groupedtrackinstance";		
+	protected static final String DB_CONNECTION = "jdbc:sqlite:database.db";	
 	
 	// Add globals
 	protected Connection connection;
@@ -37,12 +35,9 @@ public class DatabaseBuilder
 			connection = DriverManager.getConnection(DB_CONNECTION);
 	   	DBWorker worker = new DBWorker(connection);
 
-	   	// Check to see if database already exsists 
-	   	if(!worker.checkTableExists(SPECIFIC_TRACK_INSTANCE_TABLE_NAME))
-	   	{
-	   		
-	   	}
-	   	
+	   	// Check to see if database already exsists, and creates the tables if it doesn't  
+	   	worker.instiateDatabaseTables();
+
 //	      Statement statement = connection.createStatement();
 //	      statement.setQueryTimeout(CONNECTION_TIMEOUT_VALUE);  // set timeout to 30 sec.
 //			
@@ -64,23 +59,18 @@ public class DatabaseBuilder
 			// Do somthing
 			System.out.println(e.getMessage());
 		}
-		  finally
-		    {
-		      try
-		      {
-		        if(connection != null)
-		          connection.close();
-		      }
-		      catch(SQLException e)
-		      {
-		        // connection close failed.
-		        System.err.println(e);
-		      }
-		    }
-	}
-	
-	public static void main(String[] args) throws ClassNotFoundException
-	{
-		createTables();
+		finally
+		{
+			try
+		   {
+				if(connection != null)
+		      connection.close();
+		   }
+		   catch(SQLException e)
+		   {
+		   	// connection close failed.
+		   	System.err.println(e);
+		   }
+		 }
 	}
 }

@@ -33,7 +33,14 @@ public class ThisSongSucks {
 	public static void main (String[] args)
 	{
 		
-		try {
+		try 
+		{
+			// Check to make sure we have arguments
+			if(args.length < 1)
+			{
+				callHelp();
+			}
+			
 			// Backwards load stack of parameters, then pop the first one
 			Stack<String> paramStack = new Stack<String>();
 			for(int i = (args.length-1); i >= 0; i--)
@@ -42,7 +49,8 @@ public class ThisSongSucks {
 			}
 			String initialParameter = paramStack.pop();
 			System.out.println(initialParameter);
-
+			
+			// Begin our check for correct parameter 
 			if(initialParameter.equals(ABOUT))
 			{
 				callAbout();
@@ -152,5 +160,6 @@ public class ThisSongSucks {
 	static void callHelp()
 	{
 		System.out.println(HELP);
+		System.exit(0);
 	}
 }
