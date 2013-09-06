@@ -33,11 +33,11 @@ public class DatabaseBuilder
 		{
 			// Connect to the db, create worker
 			connection = DriverManager.getConnection(DB_CONNECTION);
-	   	DBWorker worker = new DBWorker(connection);
+			DBWorker worker = new DBWorker(connection);
 
-	   	// Check to see if database already exsists, and creates the tables if it doesn't  
-	   	worker.instiateDatabaseTables();
-
+			// Check to see if database already exsists, and creates the tables if it doesn't  
+			worker.instiateDatabaseTables();
+/*
 //	      Statement statement = connection.createStatement();
 //	      statement.setQueryTimeout(CONNECTION_TIMEOUT_VALUE);  // set timeout to 30 sec.
 //			
@@ -53,6 +53,7 @@ public class DatabaseBuilder
 //	        System.out.println("name = " + rs.getString("name"));
 //	        System.out.println("id = " + rs.getInt("id"));
 //	      }
+ */
 		}
 		catch(Exception e)
 		{
@@ -64,7 +65,7 @@ public class DatabaseBuilder
 			try
 		   {
 				if(connection != null)
-		      connection.close();
+				connection.close();
 		   }
 		   catch(SQLException e)
 		   {

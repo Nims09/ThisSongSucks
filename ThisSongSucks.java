@@ -29,6 +29,8 @@ public class ThisSongSucks {
 	final static String TRACK_REMOVE_ABV = "tr";
 	final static String RUN_REVIEW = "runreview";
 	final static String RUN_REVIEW_ABV = "rr";
+	final static String NL = "\n";
+
 		
 	public static void main (String[] args)
 	{
@@ -115,11 +117,28 @@ public class ThisSongSucks {
 	}
 	
 	/**
+	 * About
 	 * 
+	 * Generates a list of commands and how they should be used.
 	 */
 	static void callAbout()
 	{
-		System.out.println(ABOUT);
+		String message = 
+				"--- This Song Sucks ---" + NL
+				+ "Written by Nathaniel Mots & Harriet Willmott" + NL
+				+ NL
+				+ "Execute the application by running 'java -jar ThisSongSucks.jar <OPTION>'" + NL
+				+ NL
+				+ "Option		- Action" + NL
+				+ "about		- Prints this message" + NL
+				+ "prefrences	- Prints prefrences and allows you to change any prefrences you want to alter" + NL
+				+ "trackadd ta	- Searches the normal Serato root for new CSV Files (The normal route is " + NL
+				+ "				  'Users/<USER>/Music/_Serato_/History Export/' Change this route in prefrences)" + NL
+				+ "runreview rr	- Forces user to review all tracks that don't have a user review already" + NL
+				+ "help			- Prints help menu" + NL
+				;
+		//XXX We need options here to actually go and query the results once user have entered data 
+		System.out.println(message);
 	}
 	
 	/**
