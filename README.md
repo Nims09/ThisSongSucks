@@ -5,7 +5,6 @@ Phase1_ThisSongSucks
 
 Phase1
 
-PLEASE: RE-EVALUATE DESIGN AT EVERY PHASE- YOU WILL PROBABLY BOLOX IT UP EVERY TIME. 
 
 -	All Command line:
 o	About
